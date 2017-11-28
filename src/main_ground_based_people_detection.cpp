@@ -522,7 +522,7 @@ int main (int argc, char** argv)
 	people_detector.setVoxelSize(voxel_size);                        // set the voxel size
 	people_detector.setIntrinsics(rgb_intrinsics_matrix);            // set RGB camera intrinsic parameters
 	people_detector.setClassifier(person_classifier);                // set person classifier
-	people_detector.setHeightLimits(min_height, max_height);         // set person classifier
+//	people_detector.setHeightLimits(min_height, max_height);         // set person classifier
 //  people_detector.setSensorPortraitOrientation(true);             // set sensor orientation to vertical
 
 	// For timing:
