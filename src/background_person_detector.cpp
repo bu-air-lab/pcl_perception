@@ -55,7 +55,7 @@ typedef pcl::PointCloud<PointT> PointCloudT;
 bool visualize = false;
 bool calibrate_plane = false;
 
-const std::string data_topic = "nav_kinect/depth_registered/points"; 
+const std::string data_topic = "camera/depth_/points"; 
 const std::string classifier_location = ros::package::getPath("pcl_perception") + "/classifier.yaml";
 const std::string node_name = "segbot_people_detector";
 
@@ -150,6 +150,8 @@ int main (int argc, char** argv)
 	float min_confidence = -1.5;//-1.9
 	float min_height = 1.3;
 	float max_height = 2.3;
+        float min_width  = 0.1;
+        float max_width  = 8.0;
 	float voxel_size = 0.06;
 	Eigen::Matrix3f rgb_intrinsics_matrix;
 	rgb_intrinsics_matrix << 525, 0.0, 319.5, 0.0, 525, 239.5, 0.0, 0.0, 1.0; // Kinect RGB camera intrinsics
@@ -189,7 +191,7 @@ int main (int argc, char** argv)
 	people_detector.setVoxelSize(voxel_size);                        // set the voxel size
 	people_detector.setIntrinsics(rgb_intrinsics_matrix);            // set RGB camera intrinsic parameters
 	people_detector.setClassifier(person_classifier);                // set person classifier
-	//people_detector.setHeightLimits(min_height, max_height);         // set person classifier
+	people_detector.setPersonClusterLimits(min_height, max_height,min_width,max_width);         // set person classifier
 //  people_detector.setSensorPortraitOrientation(true);             // set sensor orientation to vertical
 
 	// For timing:
